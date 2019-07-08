@@ -1,10 +1,10 @@
-package com.chryl.pattern_2;
+package com.chryl.pattern_2.demo;
 
 import java.util.Scanner;
 
 /**
  * 策略模式:商场促销系统demo-1:
- * 基本的计算
+ * 基本的计算:未考虑扩展,打折返利等情况
  * <p>
  * Created By Chr on 2019/7/5.
  */
