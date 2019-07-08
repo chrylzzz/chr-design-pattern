@@ -12,7 +12,8 @@ package com.chryl.pattern_2.demo;
 public class StrategyPattern {
     /**
      * 策略模式：定义一系列算法，所有的算法只是实现不同，但是调用的方式相同,策略模式就是来封装算法的
-     * 策略模式就是用来封装算法的。
+     * 策略模式就是用来封装算法的。解决多种算法,将算法封装,隐藏在服务端,解耦客户端
+     * 首先判断产品的算法是否为多种.
      */
     public static void main(String args[]) {
         double sum = 1100D;
@@ -78,7 +79,7 @@ public class StrategyPattern {
     //交钱方式，策略方式
     //聚合基类
     public static class CashContext {
-        //简单工厂模式
+        //简单工厂模式:根据多种付款方式实例化对象
         CashBase cashBase = null;
 
         public CashContext(String cashType) {
