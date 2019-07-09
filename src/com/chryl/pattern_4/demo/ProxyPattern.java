@@ -2,8 +2,7 @@ package com.chryl.pattern_4.demo;
 
 /**
  * 代理模式demo-2
- * 第三版:
- * 被代理者,代理接口,代理
+ * 第三版:被代理者,代理接口,代理
  * 被代理者和代理都实现代理接口;被代理者实现的是具体的方法,代理实现的是调用被代理者;
  * 而第三方通过代理传递到被代理者作为方法执行的依据
  * <p>
@@ -17,10 +16,10 @@ public class ProxyPattern {
 
         void giveFlower();
 
-        void giveChoolate();
+        void giveChocolate();
     }
 
-    //mm
+    //mm即目标
     static class SchoolGirl {
         private String name;
 
@@ -29,7 +28,7 @@ public class ProxyPattern {
         }
     }
 
-    //追求者追求mm,追求者认识mm,所以有联系
+    //追求者即被代理者,追求mm,追求者认识mm,所以有联系
     static class Pursuit implements IGiveGift {
         SchoolGirl schoolGirl;
 
@@ -49,12 +48,12 @@ public class ProxyPattern {
         }
 
         @Override
-        public void giveChoolate() {
+        public void giveChocolate() {
             System.out.println("song coco");
         }
     }
 
-    //因为不是他真的去送,他找代理实现 ,从而送礼物
+    //代理类,因为不是他真的去送,不需要真正实现方法,只需要调用被代理类的方法发送给目标即可
     static class Proxy implements IGiveGift {
 
         //代理追求者
@@ -83,8 +82,8 @@ public class ProxyPattern {
         }
 
         @Override
-        public void giveChoolate() {
-            pursuit.giveChoolate();
+        public void giveChocolate() {
+            pursuit.giveChocolate();
         }
     }
 
@@ -92,7 +91,7 @@ public class ProxyPattern {
     public static void main(String args[]) {
         SchoolGirl schoolGirl = new SchoolGirl("lily");
         Proxy proxy = new Proxy(schoolGirl);
-        proxy.giveChoolate();
+        proxy.giveChocolate();
         proxy.giveFlower();
         proxy.giveWawa();
     }

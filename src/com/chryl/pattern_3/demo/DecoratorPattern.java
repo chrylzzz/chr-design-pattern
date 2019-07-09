@@ -6,25 +6,9 @@ package com.chryl.pattern_3.demo;
  * <p>
  * Created By Chr on 2019/7/8.
  */
-public class Demo_2 {
+public class DecoratorPattern {
 
-    public static void main(String args[]) {
-        Person person = new Person("xc");
-        TShirts tShirts = new TShirts();
-        Sweater sweater = new Sweater();
-        Sandal sandal = new Sandal();
-        Shorts shorts = new Shorts();
-        //
-        tShirts.decorator(person);
-        shorts.decorator(person);
-        sandal.decorator(person);
-
-//        shorts.show();
-//        tShirts.show();
-        sandal.show();
-    }
-
-    //待 装扮对象
+    //待装扮对象
     static class Person {
         private String name;
 
@@ -65,7 +49,6 @@ public class Demo_2 {
 
     //具体服装
     static class TShirts extends Finery {
-
         @Override
         public void show() {
             System.out.println("t-shirt");
@@ -74,7 +57,6 @@ public class Demo_2 {
     }
 
     static class Sweater extends Finery {
-
         @Override
         public void show() {
             System.out.println("毛衣");
@@ -83,7 +65,6 @@ public class Demo_2 {
     }
 
     static class Shorts extends Finery {
-
         @Override
         public void show() {
             System.out.println("短裤");
@@ -92,12 +73,27 @@ public class Demo_2 {
     }
 
     static class Sandal extends Finery {
-
         @Override
         public void show() {
             System.out.println("凉鞋");
             super.show();
 
         }
+    }
+
+    public static void main(String args[]) {
+        Person person = new Person("xc");
+        TShirts tShirts = new TShirts();
+        Sweater sweater = new Sweater();
+        Sandal sandal = new Sandal();
+        Shorts shorts = new Shorts();
+        //
+        tShirts.decorator(person);
+        shorts.decorator(person);
+        sandal.decorator(person);
+
+//        shorts.show();
+//        tShirts.show();
+        sandal.show();
     }
 }
