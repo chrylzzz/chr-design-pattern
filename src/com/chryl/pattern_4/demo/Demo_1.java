@@ -1,4 +1,4 @@
-package com.chryl.pattern_4;
+package com.chryl.pattern_4.demo;
 
 /**
  * 代理模式demo-1
