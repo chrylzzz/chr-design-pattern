@@ -1,71 +1,78 @@
 package com.chryl.pattern_3.demo;
 
 /**
- * 装饰模式:demo-1未实现
+ * 装饰模式:demo-1
  * 该类为熟悉结构类
  * <p>
  * Created By Chr on 2019/7/8.
  */
-public interface Demo_1 {
+public class Demo_1 {
 
-    //待装饰的接口
-    interface Component {
-        void method();
+    //装饰接口
+    abstract static class Component1 {
+        public abstract void operation();
     }
 
-    //实现类俗称的原始对象，或者说待装饰对象。
-    class ConcreteComponent implements Component {
+    //待装饰对象
+    static class ConcreteComponent1 extends Component1 {
 
-        public void method() {
-            System.out.println("需要装饰的对象");
+        @Override
+        public void operation() {
+            System.out.println("待装饰");
         }
-
     }
 
-    //抽象装饰器父类，它主要是为装饰器定义了我们需要装饰的目标是什么，并对Component进行了基础的装饰
-    abstract class Decorator implements Component {
+    abstract static class Decorator1 extends Component1 {
+        protected Component1 component;
 
-        protected Component component;
-
-        public Decorator(Component component) {
-            super();
+        //set
+        public void setComponent(Component1 component) {
             this.component = component;
         }
 
         @Override
-        public void method() {
-            this.component.method();
+        public void operation() {
+            if (component != null) {
+                component.operation();
+            }
         }
     }
 
-
     //装饰器A
-    class ConcreteDecoratorA extends Decorator {
+    static class ConcreteDecoratorA extends Decorator1 {
+        private String addState;
 
-        public ConcreteDecoratorA(Component component) {
-            super(component);
-        }
-
-        public void show() {
-            //需要装饰的对象
-            component.method();
-            System.out.println();
+        @Override
+        public void operation() {
+            super.operation();
+            addState = "new State";
+            System.out.println("具体装饰A操作");
         }
     }
 
     //装饰器B
-    class ConcreteDecoratorB extends Decorator {
+    static class ConcreteDecoratorB extends Decorator1 {
 
-        public ConcreteDecoratorB(Component component) {
-            super(component);
+        @Override
+        public void operation() {
+            super.operation();
+            addedBehavior();
+            System.out.println("具体装饰B操作");
         }
 
-        public void show() {
-            //需要装饰的对象
-            this.component.method();
-            System.out.println();
+        private void addedBehavior() {
+
         }
     }
 
+    public static void main(String args[]) {
+        ConcreteComponent1 concreteComponent = new ConcreteComponent1();
+        ConcreteDecoratorA concreteDecoratorA = new ConcreteDecoratorA();
+        ConcreteDecoratorB concreteDecoratorB = new ConcreteDecoratorB();
+        concreteDecoratorA.setComponent(concreteComponent);
+        concreteDecoratorB.setComponent(concreteComponent);
+        concreteDecoratorB.operation();
+//        concreteDecoratorA.operation();
 
+    }
 }
