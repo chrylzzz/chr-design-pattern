@@ -21,14 +21,14 @@ public class DecoratorPattern {
 
         //展示穿着
         public void show() {
-            System.out.println(name);
+            System.out.println("待装饰..");
         }
 
     }
 
     //服装/装扮类
     static class Finery extends Person {
-        private Person person;
+        protected Person person;
 
         //        public void setPerson(Person person) {
 //            this.person = person;
@@ -92,8 +92,8 @@ public class DecoratorPattern {
         shorts.decorator(person);
         sandal.decorator(person);
 
-//        shorts.show();
-//        tShirts.show();
+        shorts.show();
+        tShirts.show();
         sandal.show();
     }
 }
